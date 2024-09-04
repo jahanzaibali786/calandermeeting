@@ -1,0 +1,1103 @@
+<!-- @php
+    //  $logo=asset(Storage::url('uploads/logo/'));
+    $logo = \App\Models\Utility::get_file('uploads/logo');
+    $company_favicon = Utility::getValByName('company_favicon');
+    $favicon = Utility::getValByName('company_favicon');
+
+    $getseo = App\Models\Utility::getSeoSetting();
+    $metatitle = isset($getseo['meta_title']) ? $getseo['meta_title'] : '';
+    $metsdesc = isset($getseo['meta_desc']) ? $getseo['meta_desc'] : '';
+    $meta_image = \App\Models\Utility::get_file('uploads/meta/');
+    $meta_logo = isset($getseo['meta_image']) ? $getseo['meta_image'] : '';
+    $get_cookie = \App\Models\Utility::getCookieSetting();
+@endphp -->
+
+<html lang="en">
+<meta name="csrf-token" id="csrf-token" content="{{ csrf_token() }}">
+
+<head>
+    <title>{{ Utility::getValByName('title_text') ? Utility::getValByName('title_text') : config('app.name', '') }} -
+        Form Requirment</title>
+
+
+    <meta name="title" content="{{ $metatitle }}">
+    <meta name="description" content="{{ $metsdesc }}">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ env('APP_URL') }}">
+    <meta property="og:title" content="{{ $metatitle }}">
+    <meta property="og:description" content="{{ $metsdesc }}">
+    <meta property="og:image" content="{{ $meta_image . $meta_logo }}">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ env('APP_URL') }}">
+    <meta property="twitter:title" content="{{ $metatitle }}">
+    <meta property="twitter:description" content="{{ $metsdesc }}">
+    <meta property="twitter:image" content="{{ $meta_image . $meta_logo }}">
+
+
+    <!-- Meta -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <link rel="icon"
+        href="{{ $logo . '/' . (isset($company_favicon) && !empty($company_favicon) ? $company_favicon : 'favicon.png') }}"
+        type="image" sizes="16x16">
+
+    <!-- Favicon icon -->
+    <link rel="icon" href="{{ asset('assets/images/favicon.svg') }}" type="image/x-icon" />
+
+    <link rel="stylesheet" href="{{ asset('assets/css/plugins/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/plugins/animate.min.css') }}">
+
+    <!-- font css -->
+    <link rel="stylesheet" href="{{ asset('assets/fonts/tabler-icons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/fonts/feather.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/fonts/fontawesome.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/fonts/material.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/plugins/main.css') }}">
+    <!-- vendor css -->
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" id="main-style-link">
+    <link rel="stylesheet" href="{{ asset('assets/css/customizer.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}" id="main-style-link">
+
+</head>
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet"
+    href=
+"https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<style>
+    body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background: rgba(214, 234, 228, 0.475);
+        font-family: "Sailec", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto",
+            "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+            "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    }
+
+    .main-box {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+
+    .check-tag {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        font-size: 10px;
+    }
+
+    .main-container {
+        height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .main-container p {
+        margin: 15px;
+    }
+
+    #logo {
+        display: flex;
+        align-items: center;
+    }
+
+    #logo h1 {
+        height: 50px;
+        width: 200px;
+        color: white;
+        background: #ff9b00;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding:0px 10px;
+        latter-spacing:2px;
+    }
+
+    .content {
+        height: 500px;
+        width: 700px;
+        display: flex;
+        flex-direction: column;
+        background: white;
+        padding: 20px;
+    }
+
+    .content h1 {
+        font-size: 24px;
+    }
+
+    .name-tag {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        margin-top: 10px;
+        margin-right: 10px
+    }
+
+    .name-tag span {
+        margin-bottom: 10px;
+    }
+
+    .box {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        justify-content: space-between;
+    }
+
+    .box input {
+        height: 50px;
+        width: 100%;
+    }
+
+    .content input {
+        height: 35px;
+        border: none;
+        background: rgba(214, 234, 228, 0.475);
+        padding:12px;
+        width:100%;
+    }
+    .content input:focus {
+        height: 35px;
+        border:2px solid #0091ae;
+        background: rgba(214, 234, 228, 0.475);
+        padding:12px;
+        outline:none;
+        border-radius:5px;
+    }
+
+    .button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .button button {
+        padding: 10px 13px;
+        border-radius: 5px;
+        width: 80px;
+    }
+
+    .sbtn {
+        border-color: #fff;
+        font-size: 12px !important;
+        line-height: 14px !important;
+        padding: 8px 16px !important;
+    }
+
+    .sbtn:hover {
+        color:#fff;
+        background-color: #0091ae;
+    }
+    .sbtn.active {
+        color:#fff;
+        background-color: #0091ae ;
+    }
+
+    #back {
+        color: #4285f4;
+        background: white;
+        border: 2px solid #4285f4;
+    }
+
+    #next {
+        color: white;
+        background: #4285f4;
+        border: none;
+    }
+
+    @media screen and (max-width: 800px) {
+        .main-container p {
+            font-size: 12px;
+        }
+
+        .box {
+            flex-direction: column;
+        }
+
+        .content {
+            height: 600px;
+            width: 100%;
+            padding: 10px;
+        }
+
+        .content h1 {
+            font-size: 20px;
+        }
+
+        .box input {
+            height: 30px;
+            width: 98%;
+        }
+
+        .content input {
+        height: 35px;
+        border: none;
+        background: rgba(214, 234, 228, 0.475);
+        padding:12px;
+        width:100%;
+        }
+        .content input:focus {
+            height: 35px;
+            border:2px solid #0091ae;
+            background: rgba(214, 234, 228, 0.475);
+            padding:12px;
+            outline:none;
+            border-radius:5px;
+        }
+
+        .button {
+            margin-top: 10px;
+        }
+        .content-clender {
+            width: 400px;
+        }
+
+    }
+
+    .body {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background: #000;
+        color: #fff;
+        font-family: "Sailec", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto",
+            "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+            "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    }
+
+    .img {
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+        background: gray;
+    }
+
+    .clender {
+        border-right: 2px solid rgba(0, 0, 0, 0.329);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .time-table {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .content-clender {
+        height: 700px;
+        width: 800px;
+        display: grid;
+        grid-template-columns: 50% 50%;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        border: 2px solid rgba(0, 0, 0, 0.329);
+    }
+
+    .main-clender {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        margin-top: 20px;
+    }
+
+    .calendar-container {
+        background: #000;
+        width: 450px;
+        border-radius: 10px;
+    }
+
+    .calendar-container header {
+        display: flex;
+        align-items: center;
+        padding: 25px 30px 10px;
+        justify-content: center;
+    }
+
+    header .calendar-navigation {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    header .calendar-navigation span {
+        height: 38px;
+        width: 38px;
+        margin: 0 1px;
+        cursor: pointer;
+        text-align: center;
+        line-height: 38px;
+        border-radius: 50%;
+        user-select: none;
+        color: #aeabab;
+        font-size: 1.9rem;
+    }
+
+    .calendar-navigation span:last-child {
+        margin-right: -10px;
+    }
+
+    header .calendar-navigation span:hover {
+        background: #f2f2f2;
+    }
+
+    header .calendar-current-date {
+        font-weight: 500;
+        font-size: 1.45rem;
+    }
+
+    .calendar-body {
+        padding: 20px;
+    }
+
+    .calendar-body ul {
+        list-style: none;
+        flex-wrap: wrap;
+        display: flex;
+        text-align: center;
+    }
+
+    .calendar-body .calendar-dates {
+        margin-bottom: 20px;
+    }
+
+    .calendar-body li {
+        width: calc(100% / 7);
+        font-size: 1.07rem;
+        color: #fff;
+    }
+
+    .calendar-body .calendar-weekdays li {
+        cursor: default;
+        font-weight: 500;
+    }
+
+    .calendar-body .calendar-dates li {
+        margin-top: 30px;
+        position: relative;
+        z-index: 1;
+        color: #fff ;
+        cursor: pointer;
+    }
+
+    .calendar-dates li.inactive {
+        color: #aaa;
+    }
+
+    .calendar-dates li.active {
+        color: #fff;
+    }
+
+    .calendar-dates li::before {
+        position: absolute;
+        content: "";
+        z-index: -1;
+        top: 50%;
+        left: 50%;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .calendar-dates li.active::before {
+        background: #0091ae;
+    }
+
+    .calendar-dates li:not(.active):hover::before {
+        background: #e4e1e1;
+    }
+
+    .btn {
+        color: #fff;
+    }
+
+    .time-table h3 {
+        font-size: 18px;
+
+        margin-top: 50px;
+    }
+
+    .time-table p {
+        margin: 0px;
+    }
+
+    .time-table {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 0px 50px;
+        justify-content: center;
+        align-items: start;
+    }
+
+
+    .content-clender {
+        height: 700px;
+        width: 800px;
+        display: grid;
+        grid-template-columns: 50% 50%;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        background: #000;
+        color: #fff;
+    }
+
+    .card {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    .card-content {
+        height: 50px;
+        width: 200px;
+        border: 2px solid black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    .card-content:hover {
+        border: none;
+
+    }
+    .list::-webkit-scrollbar {
+  width: 12px; /* Width of the scrollbar */
+}
+
+/* The part of the scrollbar that is draggable */
+.list::-webkit-scrollbar-thumb {
+  background: #888; /* Color of the draggable part */
+  border-radius: 6px; /* Round the corners */
+}
+
+/* The part of the scrollbar that becomes visible when hovered */
+.list::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Color when hovered */
+}
+
+/* The scrollbar track (background of the scrollbar) */
+.list::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Background of the track */
+  border-radius: 6px; /* Round the corners */
+}
+    /* Extra small devices (phones, 600px and down) */
+@media (min-width:300px) and (max-width: 387px) {
+    .calendar-body{
+        padding: 0px 65px 0px 65px !important;
+                margin: 0px 0px 0px -25px !important;
+
+        }
+        .content-clender{
+            grid-template-columns:auto;
+            height:100%;
+    }
+    .time-table{
+        align-items:center !important;
+    }
+    .time-table .list{
+        width:85% !important;
+    }
+    .clender{
+        border:none;
+    }
+    #logo h1{
+        padding-top:7px;
+    }
+
+}
+@media (min-width: 388px) and (max-width: 600px) {
+    .content-clender{
+            grid-template-columns:auto;
+            height:100%;
+    }
+    .calendar-body{
+        padding: 0px 39px 0px 39px !important;
+        margin: 0px 0px 0px -10px !important;
+    }
+    .time-table{
+        align-items:center !important;
+    }
+    .time-table .list{
+        width:85% !important;
+    }
+    .clender{
+        border:none;
+    }
+     #logo h1{
+        padding-top:7px;
+    }
+}
+
+</style>
+
+<body>
+    <div class="body" id="tab1">
+        <div class="main-container">
+            <span id="logo">
+                <!-- @if($lead->Pipeline->name == 'Coworkit')
+                <img src="{{asset('assets/email/Coworkitlogoforlighttheam.png')}}" style="width: 200px;height: 40px;">
+                @else -->
+                <img src="csuitedark.png" style="width: 200px;height: 70px;">
+                <!-- @endif -->
+            </span>
+            <span>Schedule Your Meeting</span>
+            <p style="text-align:center;">
+                <span class="meet_time">You are Currently scheduled to meet on
+                    September 4,2024, 11:10 AM</span>
+                <!-- <span class="meet_time">You are Currently scheduled to meet on
+                    {{ (new \DateTime())->format('l, F j, Y') }},{{ (new \DateTime())->format('g:i A') }}</span> -->
+            </p>
+        </div>
+        <div class="content-clender">
+            <div class="clender">
+
+
+                <div class="calendar-container">
+                    <div class="main-clender">
+                        <!-- @if(!empty($mail_user->profile_img))
+                        <div class="img">
+                        <img style="width: 100%;height: 100%;border-radius: 50%; object-fit:cover;" src="{{ asset('storage/uploads/meeting_profile/'.$mail_user->profile_img)}}">
+                        </div>
+                        @else -->
+                        <div class="img">
+                            <img style="width: 100%;height: 100%;border-radius: 50%; object-fit:cover;" src="csuitelogo.png">
+                        </div>
+                        <!-- @endif -->
+                        <div class="name">Meet With uzair Aftab</div>
+                    </div>
+                    <header class="calendar-header">
+                        <div class="calendar-navigation">
+                            <span id="calendar-prev" class="material-symbols-rounded">
+                                chevron_left
+                            </span>
+                            <p class="calendar-current-date" style=" padding-top: 10px;"></p>
+                            <span id="calendar-next" class="material-symbols-rounded">
+                                chevron_right
+                            </span>
+                        </div>
+                    </header>
+                    <input type="hidden" name="data" value="{{ date('d-m-Y') }}">
+
+                    <div class="calendar-body">
+                        <ul class="calendar-weekdays">
+                            <li>Sun</li>
+                            <li>Mon</li>
+                            <li>Tue</li>
+                            <li>Wed</li>
+                            <li>Thu</li>
+                            <li>Fri</li>
+                            <li>Sat</li>
+                        </ul>
+                        <ul class="calendar-dates"></ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="time-table">
+                <h3>How long do you need &#63</h3>
+                <div class="btn-group" role="group" aria-label="Basic outlined example">
+                    <button type="button" data-mint="60" class="sbtn btn btn-outline-primary">1 Hour</button>
+                    <button type="button" data-mint="45" class="sbtn btn btn-outline-primary">45 mins</button>
+                    <button type="button" data-mint="30" class="sbtn btn btn-outline-primary">30 mins</button>
+                    <button type="button" data-mint="15" class="sbtn btn btn-outline-primary active">15
+                        mins</button>
+                </div>
+                <h3>Choose a time</h3>
+                <div>
+                    <p>Showing times for <b class="dat">september 24</b></p>
+                </div>
+                <div style="padding: 10px 0px;">
+                    <strong style="color:#fff">Asia/Karachi (UTC +05:00)</strong>
+                </div>
+                <div class="list" style="max-height: 400px; width:100%; overflow-y: auto;">
+                        <div class="card-content ti" data-time="{{ $slot }}"
+                            style="padding: 12px 24px; margin-bottom: 6px; width: 100%; color: #fff; border-color: #cbd6e2;">
+                            11:00 AM</div>
+                        <div class="card-content ti" data-time="{{ $slot }}"
+                            style="padding: 12px 24px; margin-bottom: 6px; width: 100%; color: #fff; border-color: #cbd6e2;">
+                            11:30 AM</div>
+                        <div class="card-content ti" data-time="{{ $slot }}"
+                            style="padding: 12px 24px; margin-bottom: 6px; width: 100%; color: #fff; border-color: #cbd6e2;">
+                            12:00 PM</div>
+                        <div class="card-content ti" data-time="{{ $slot }}"
+                            style="padding: 12px 24px; margin-bottom: 6px; width: 100%; color: #fff; border-color: #cbd6e2;">
+                            12:30 PM</div>
+                        <div class="card-content ti" data-time="{{ $slot }}"
+                            style="padding: 12px 24px; margin-bottom: 6px; width: 100%; color: #fff; border-color: #cbd6e2;">
+                            1:00 PM</div>
+                        <div class="card-content ti" data-time="{{ $slot }}"
+                            style="padding: 12px 24px; margin-bottom: 6px; width: 100%; color: #fff; border-color: #cbd6e2;">
+                            1:30 PM</div>
+                        <div class="card-content ti" data-time="{{ $slot }}"
+                            style="padding: 12px 24px; margin-bottom: 6px; width: 100%; color: #fff; border-color: #cbd6e2;">
+                            2:00 PM</div>
+                        <div class="card-content ti" data-time="{{ $slot }}"
+                            style="padding: 12px 24px; margin-bottom: 6px; width: 100%; color: #fff; border-color: #cbd6e2;">
+                            2:30 PM</div>
+                        <div class="card-content ti" data-time="{{ $slot }}"
+                            style="padding: 12px 24px; margin-bottom: 6px; width: 100%; color: #fff; border-color: #cbd6e2;">
+                            3:00 PM</div>
+                    <!-- @foreach ($slots as $slot)
+                        <div class="card-content ti" data-time="{{ $slot }}"
+                            style="padding: 12px 24px; margin-bottom: 6px; width: 100%; color: #00a4bd; border-color: #cbd6e2;">
+                            {{ $slot }}</div>
+                    @endforeach -->
+                </div>
+
+
+                <form id="meetingForm" action="{{ url('submit-meeting') }}" method="POST">
+                    <!-- @csrf -->
+                    <input type="hidden" name="time" id="time" value="">
+                    <input type="hidden" name="mint" id="mint" value="15">
+                    <input type="hidden" name="date" id="date" value="{{ date('d-m-Y') }}">
+                    <input type="hidden" name="user_id" value="{{ Crypt::encrypt($user->id) }}">
+                    <!-- {{-- <button type="submit" style="float: right; color:white; position: relative; left: 201px;"
+                        class="btn btn-primary">Submit</button> --}} -->
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="tab2 d-none" id=tab2>
+        <div class="main-container">
+             <span id="logo">
+                @if($lead->Pipeline->name == 'Coworkit')
+                <img src="{{asset('assets/email/Coworkitlogoforlighttheam.png')}}" style="width: 200px;height: 40px;">
+                @else
+                <img src="{{asset('assets/email/csuitelight.png')}}" style="width: 200px;height: 70px;">
+                @endif
+            </span>
+            <span>Schedule Your Meeting</span>
+            <p style="text-align:center;">
+                <span class="meet_time">You are Currently scheduled to meet on
+                    {{ (new \DateTime())->format('l, F j, Y') }},{{ (new \DateTime())->format('g:i A') }}</span>
+            </p>
+        </div>
+        <div class="content">
+            <h1> Your information</h1>
+            <h5 class="dat">Friday August 30,2024 7:00 PM </h5>
+            {{-- <div class="icon"><i class="fa-solid fa-location-dot"></i> <span>Microsoft Teams</span></div> --}}
+            <form id="userForm" method="POST">
+            <div class="box">
+                <div class="name-tag a"><span>Name*</span><input type="text" id="name" name="name" value={{ $user->name }}>
+                    <div id="name-error" class="error-message" style="display:none;">This field is required. Please enter a value.</div>
+
+                </div>
+                {{-- <div class="name-tag">
+                    <span>Last name*</span> <input type="text">
+                </div> --}}
+            </div>
+            <div class="name-tag a">
+                <span>Your email address</span>
+                <input type="email" name="email" value={{ $user->email }} id="email">
+                <div id="email-error" class="error-message a" style="display:none;">This field is required. Please enter a value.</div>
+
+            </div>
+            <div class="name-tag">
+                <span>What Do You Want to discuss in particular &#63</span>
+                <input type="text" name="detail">
+            </div>
+            <div class="button">
+                <button id="back">Back</button>
+                <button id="next">Confirm</button>
+            </div>
+            </form>
+        </div>
+    </div> -->
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        let date = new Date();
+        let year = date.getFullYear();
+        let month = date.getMonth();
+
+
+        const day = document.querySelector(".calendar-dates");
+        const currdate = document.querySelector(".calendar-current-date");
+        const prenexIcons = document.querySelectorAll(".calendar-navigation span");
+
+        const months = [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ];
+
+        const manipulate = () => {
+            const firstDayOfMonth = new Date(year, month, 1).getDay();
+            const lastDateOfMonth = new Date(year, month + 1, 0).getDate();
+            const lastDayOfMonth = new Date(year, month, lastDateOfMonth).getDay();
+            const lastDateOfPreviousMonth = new Date(year, month, 0).getDate();
+
+            let lit = "";
+
+            // Adding dates of the previous month
+            for (let i = firstDayOfMonth; i > 0; i--) {
+                const dayNum = lastDateOfPreviousMonth - i + 1;
+                const prevMonthYear = month === 0 ? year - 1 : year;
+                const prevMonth = month === 0 ? 12 : month;
+                lit += `<li class="inactive" data-date="${dayNum}-${prevMonth}-${prevMonthYear}">${dayNum}</li>`;
+            }
+
+            // Adding dates of the current month
+            for (let i = 1; i <= lastDateOfMonth; i++) {
+                const today = new Date();
+                const todayDay = today.getDate();
+                const todayMonth = today.getMonth();
+                const todayYear = today.getFullYear();
+                let dateClass = "";
+                if (year < todayYear ||
+                    (year === todayYear && month < todayMonth) ||
+                    (year === todayYear && month === todayMonth && i < todayDay)) {
+                    dateClass = "inactive";
+                } else if (i === todayDay && month === todayMonth && year === todayYear) {
+                    dateClass = "active";
+                }
+                lit +=
+                    `<li class="${dateClass}" data-date="${i}-${month + 1}-${year}" ${dateClass === "inactive" ? 'disabled' : ''}>${i}</li>`;
+            }
+
+            // Adding dates of the next month
+            for (let i = lastDayOfMonth + 1; i < 7; i++) {
+                const dayNum = i - lastDayOfMonth;
+                const nextMonthYear = month === 11 ? year + 1 : year;
+                const nextMonth = month === 11 ? 1 : month + 2;
+                lit += `<li class="inactive" data-date="${dayNum}-${nextMonth}-${nextMonthYear}">${dayNum}</li>`;
+            }
+
+            currdate.innerText = `${months[month]} ${year}`;
+            day.innerHTML = lit;
+            const today = new Date();
+            const todayMonth = today.getMonth();
+            const todayYear = today.getFullYear();
+            const nextMonth = todayMonth === 11 ? 0 : todayMonth + 1;
+            const nextYear = todayMonth === 11 ? todayYear + 1 : todayYear;
+            // Disable navigation icons based on the month
+            prenexIcons.forEach(icon => {
+                if (icon.id === "calendar-prev") {
+                    // Disable "previous" icon if we are viewing the current month
+                    icon.style.pointerEvents = (year === todayYear && month === todayMonth) ? 'none' : 'auto';
+                } else if (icon.id === "calendar-next") {
+                    // Disable "next" icon if we are in one month next;
+                    const isNextMonth = (year === nextYear && month === nextMonth);
+                    icon.style.pointerEvents = isNextMonth ? 'none' : 'auto';
+                }
+
+            });
+            // Reattach click event handlers after updating the DOM
+            $('.calendar-dates li').off('click').on('click', function() {
+                if ($(this).hasClass('inactive')) {
+                    return;
+                }
+                $('.calendar-dates li').removeClass('active'); // Remove 'active' from all
+                $(this).addClass('active'); // Add 'active' to the clicked date
+                // Retrieve and format the selected date
+                const date = $(this).data('date');
+                $('#date').val(date);
+                fetchAvailableTime(date);
+                // const csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+                //     var url="{{url('available-time')}}";
+
+                //     $.ajax({
+                //         url: url,
+                //         method: 'Post', // Use GET method
+                //         data: { date: date }, // Pass date as a parameter
+                //         headers: {
+                //             'X-CSRF-TOKEN': csrfToken, // Include CSRF token
+                //             'X-Custom-Header': 'CustomValue' // Add custom header
+                //         },
+                //         success: function(response) {
+                //             if(response.status == 'success'){
+                //                // Use 'const' for variables that don't change
+                //                     var slotElement='';
+                //                     for(var i=0; i<response.data.length; i++){
+                //                          slotElement += `
+                //                             <div class="card-content ti" data-time="${response.data[i]}"
+                //                                 style="padding: 12px 24px; margin-bottom: 6px; width: 100%; color: #00a4bd; border-color: #cbd6e2;">
+                //                                 ${response.data[i]}
+                //                             </div>
+                //                         `;
+                //                     }
+                //                     $('.list').empty().append(slotElement);
+
+                //             }
+
+                //         },
+                //         error: function(xhr) {
+                //             // Handle error (e.g., show an error message)
+                //             alert('An error occurred: ' + xhr.responseText);
+                //         }
+                //     });
+
+                // Create a Date object from the retrieved date
+                const [day, month, year] = date.split('-');
+                const formattedDate = new Date(year, month - 1, day);
+
+                // Format the date
+                const optionsDate = {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    timeZone: 'Asia/Karachi'
+                };
+                const formattedDateStr = formattedDate.toLocaleDateString('en-US', optionsDate);
+
+                const optionsDate2 = {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    timeZone: 'Asia/Karachi'
+                };
+                const formattedDateStr2 = new Intl.DateTimeFormat('en-US', optionsDate2).format(formattedDate);
+
+                // Format the time
+                const optionsTime = {
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    hour12: true,
+                    timeZone: 'Asia/Karachi'
+                };
+                const formattedTime = formattedDate.toLocaleTimeString('en-US', optionsTime);
+
+                // Combine date and time
+                const formattedDateTime = `${formattedDateStr},`;
+                // const formateTime = ` ${formattedTime},`;
+
+                // Set the formatted date and time to the element
+                $('.meet_time').empty().append('You are currently scheduled to meet on ' + formattedDateTime);
+                $('.dat').empty().append(formattedDateStr2);
+                // $('.ti_op').empty().append(formateTime);
+            });
+        }
+
+
+
+        manipulate();
+
+        prenexIcons.forEach(icon => {
+            icon.addEventListener("click", () => {
+                if (icon.id === "calendar-prev") {
+                    month--;
+                    if (month < 0) {
+                        month = 11;
+                        year--;
+                    }
+                } else if (icon.id === "calendar-next") {
+                    month++;
+                    if (month > 11) {
+                        month = 0;
+                        year++;
+                    }
+                }
+
+                // Update the date object to reflect the new month and year
+                date = new Date(year, month);
+                manipulate();
+            });
+        });
+
+        function fetchAvailableTime(date) {
+            const csrfToken = $('meta[name="csrf-token"]').attr('content');
+                var time = $('#mint').val();
+
+            $.ajax({
+                url: "{{ url('available-time') }}",
+                method: 'POST',
+                data: { date: date,time:time },
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken,
+                    'X-Custom-Header': 'CustomValue'
+                },
+                success(response) {
+                    if (response.status === 'success') {
+                        const slotElements = response.data.map(timeSlot => `
+                            <div class="card-content ti" data-time="${timeSlot}"
+                                style="padding: 12px 24px; margin-bottom: 6px; width: 100%; color: #00a4bd; border-color: #cbd6e2;">
+                                ${timeSlot}
+                            </div>
+                        `).join('');
+
+                        $('.list').empty().append(slotElements);
+                    }
+                },
+                error(xhr) {
+                    alert(`An error occurred: ${xhr.responseText}`);
+                }
+            });
+        }
+
+
+        // $(document).ready(function() {
+        // $('.calendar-dates li').on('click', function() {
+        //     alert('asdhas');
+        //     $('.calendar-dates li').removeClass('active'); // Remove 'selected' from all
+        //     $(this).addClass('active'); // Add 'selected' to the clicked date
+        //     // You are Currently scheduled to meet on Monday ,September 18,2023 7:00 PM
+        //     var date = $(this).data('date');
+        //     $('#date').val(date);
+        //     // Step 2: Create a Date object from the retrieved date
+        //     const [day, month, year] = date.split('-'); // Split the date string into components
+        //     const formattedDate = new Date(year, month - 1,
+        //         day); // Create a Date object (months are 0-indexed)
+
+        //     // Step 3: Format the date
+        //     const optionsDate = {
+        //         weekday: 'long',
+        //         year: 'numeric',
+        //         month: 'long',
+        //         day: 'numeric',
+        //         timeZone: 'Asia/Karachi'
+        //     };
+        //     const formattedDateStr = formattedDate.toLocaleDateString('en-US', optionsDate);
+
+        //     const optionsDate2 = {
+        //         year: 'numeric',
+        //         month: 'long',
+        //         timeZone: 'Asia/Karachi'
+        //     };
+        //     const formattedDateStr2 = new Intl.DateTimeFormat('en-US', optionsDate).format(
+        //         formattedDate);
+
+        //     // Step 4: Format the time
+        //     const optionsTime = {
+        //         hour: 'numeric',
+        //         minute: 'numeric',
+        //         hour12: true,
+        //         timeZone: 'Asia/Karachi'
+        //     };
+        //     const formattedTime = formattedDate.toLocaleTimeString('en-US', optionsTime);
+
+        //     // Combine date and time
+        //     const formattedDateTime = `${formattedDateStr}, ${formattedTime}`;
+
+        //     // Step 5: Set the formatted date and time to the element
+        //     $('.meet_time').empty().append('You are Currently scheduled to meet on' +
+        //         formattedDateTime);
+        //     $('.dat').empty().append(formattedDateStr2);
+        // });
+        // });
+        $(document).ready(function() {
+            $('.sbtn').on('click', function() {
+                $('.sbtn').removeClass('active'); // Remove 'selected' from all
+                $(this).addClass('active'); // Add 'selected' to the clicked date
+                $('#mint').val($(this).data('mint')); // Add 'selected' to the clicked date
+                var date = $('#date').val();
+                fetchAvailableTime(date);
+            });
+
+            // $('.ti').on('click', function() {
+            $(document).on("click",".ti",function() {
+                var time = $(this).data('time');
+                $('#time').val(time);
+                $('.ti_op').empty().append(time);
+                $('#tab1').addClass('d-none');
+                $('#tab2').removeClass('d-none');
+
+            });
+            $('#back').on('click', function() {
+                $('#tab2').addClass('d-none');
+                $('#tab1').removeClass('d-none');
+            });
+        });
+    </script>
+    <script>
+    $(document).ready(function() {
+        $('#next').on('click', function(e) {
+            e.preventDefault();
+            var date = $('#date').val();
+            var time = $('#time').val();
+            var mint = $('#mint').val();
+
+            if (date == '' || time == '' || mint == '') {
+                alert('Please select a date and time');
+                return; 
+            }
+            var userData = $('#userForm').serialize();
+            var meetingData = $('#meetingForm').serialize();
+            var combinedData = userData + '&' + meetingData;
+
+            $.ajax({
+                url: $('#meetingForm').attr('action'), 
+                method: 'POST', 
+                data: combinedData, 
+                success: function(response) {
+                    location.reload();
+                },
+                error: function(xhr) {
+                    console.error('An error occurred: ' + xhr.responseText);
+                }
+            });
+        });
+    });
+</script>
+<script>
+        $('#name').on('focus', function() {
+                var $errorElement = $('#name-error');
+                $errorElement.hide();
+            });
+
+        $('#name').on('blur', function() {
+            var $emailField = $(this);
+            var $errorElement = $('#name-error');
+            if ($emailField.val().trim() === '') {
+                $errorElement.show();
+            } else {
+                $errorElement.hide();
+            }
+        });
+        $('#email').on('focus', function() {
+                var $errorElement = $('#email-error');
+                $errorElement.hide();
+            });
+        $('#email').on('blur', function() {
+            var $emailField = $(this);
+            var $errorElement = $('#email-error');
+            if ($emailField.val().trim() === '') {
+                $errorElement.show();
+            } else {
+                $errorElement.hide();
+            }
+        });
+    </script>
+</body>
+
+</html>
+
+</html>
